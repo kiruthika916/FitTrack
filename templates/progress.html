@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker - FitTrack</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { min-height: 100vh; background: linear-gradient(135deg, #111827, #1e3a5f); color: white; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { font-size: 32px; color: #38bdf8; margin-bottom: 8px; }
+        .card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #cbd5e1; }
+        input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; }
+        .btn { display: inline-block; width: 100%; padding: 12px; border-radius: 25px; background: #38bdf8; color: #0f172a; font-weight: bold; border: none; cursor: pointer; text-align: center; text-decoration: none; }
+        .btn:hover { background: #0284c7; color: white; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        th { color: #38bdf8; }
+        .btn-back { display: inline-block; margin-top: 20px; background: rgba(255, 255, 255, 0.1); color: white; width: auto; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Progress Tracker 📊</h1>
+            <p>Log your daily workout achievements</p>
+        </div>
+
+        <div class="card">
+            <h3>Add Workout Log</h3>
+            <form action="/progress" method="POST" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="user_name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Workout Type</label>
+                    <select name="workout_type">
+                        <option value="Cardio">Cardio</option>
+                        <option value="Strength Training">Strength Training</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="HIIT">HIIT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Duration (in mins)</label>
+                    <input type="number" name="duration" placeholder="e.g. 30" required>
+                </div>
+                <div class="form-group">
+                    <label>Calories Burned (kcal)</label>
+                    <input type="number" name="calories" placeholder="e.g. 200" required>
+                </div>
+                <button type="submit" class="btn">Save Progress</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Workout Logs</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Workout</th>
+                        <th>Duration</th>
+                        <th>Calories</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                    <tr>
+                        <td>{{ log['user_name'] }}</td>
+                        <td>{{ log['workout_type'] }}</td>
+                        <td>{{ log['duration'] }} mins</td>
+                        <td>{{ log['calories'] }} kcal</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="/dashboard" class="btn btn-back">← Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

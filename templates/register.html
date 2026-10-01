@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - FitTrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111827, #1e3a5f);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .card h2 span {
+            color: #38bdf8;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #94a3b8;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 25px;
+            background: #38bdf8;
+            color: #07111f;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #7dd3fc;
+        }
+
+        .link {
+            margin-top: 20px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .link a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <a href="/" class="back-home">← Back to Home</a>
+        <h2>Create Account on <span>FitTrack</span></h2>
+
+        <form action="/register" method="POST">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+
+        <p class="link">
+            Already have an account? <a href="/login">Login</a>
+        </p>
+    </div>
+
+</body>
+</html>

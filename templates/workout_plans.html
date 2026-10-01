@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Plans - FitTrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111827, #1e3a5f);
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.2);
+        }
+
+        .plan-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .beginner { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+        .intermediate { background: rgba(234, 179, 8, 0.2); color: #fde047; border: 1px solid #eab308; }
+        .advanced { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid #ef4444; }
+
+        .plan-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .plan-card li {
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Workout Plans 🏋️‍♂️</h1>
+            <p>Choose a workout routine tailored to your fitness level</p>
+        </div>
+
+        <div class="plans-grid">
+            <!-- Beginner Plan -->
+            <div class="plan-card">
+                <span class="plan-badge beginner">Beginner</span>
+                <h3>Full Body Light</h3>
+                <ul>
+                    <li>✓ 15 Mins Jumping Jacks</li>
+                    <li>✓ 10 Push-ups / Knee Push-ups</li>
+                    <li>✓ 15 Bodyweight Squats</li>
+                    <li>✓ 30 Sec Plank Hold</li>
+                </ul>
+            </div>
+
+            <!-- Intermediate Plan -->
+            <div class="plan-card">
+                <span class="plan-badge intermediate">Intermediate</span>
+                <h3>Strength & Cardio</h3>
+                <ul>
+                    <li>✓ 20 Mins High Knees & Rope Jump</li>
+                    <li>✓ 20 Standard Push-ups</li>
+                    <li>✓ 20 Weighted Squats</li>
+                    <li>✓ 1 Min Plank & Mountain Climbers</li>
+                </ul>
+            </div>
+
+            <!-- Advanced Plan -->
+            <div class="plan-card">
+                <span class="plan-badge advanced">Advanced</span>
+                <h3>High-Intensity Workout</h3>
+                <ul>
+                    <li>✓ 30 Mins HIIT Cardio</li>
+                    <li>✓ 30 Diamond Push-ups</li>
+                    <li>✓ 30 Jump Squats</li>
+                    <li>✓ 2 Mins Core Blast</li>
+                </ul>
+            </div>
+        </div>
+<!-- Accessibility Banner & Adaptive Yoga Section -->
+        <div style="background: #1e293b; padding: 15px; border-radius: 12px; border-left: 5px solid #38bdf8; margin: 30px 0;">
+            <h3 style="margin: 0; color: #38bdf8;">♿ Adaptive & Accessible Fitness</h3>
+            <p style="margin: 5px 0 0 0; font-size: 14px; color: #cbd5e1;">
+                Designed for all mobility levels. Includes wheelchair-friendly and supported exercises with voice navigation support.
+            </p>
+        </div>
+
+        <h2 style="color: #38bdf8; text-align: left; margin-top: 20px;">🧘‍♀️ Adaptive Yoga for All Capabilities</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; margin-bottom: 30px;">
+            
+            <!-- Chair Supported Tree Pose -->
+            <div style="background: #1e293b; padding: 15px; border-radius: 12px; border: 1px solid #334155;">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400" alt="Tree Pose" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
+                <h3 style="color: #22c55e; margin-top: 10px;">Chair-Supported Tree Pose</h3>
+                <p style="font-size: 13px; color: #94a3b8;">Improves balance using a chair or wall for support.</p>
+                <span style="background: rgba(34, 197, 94, 0.2); color: #22c55e; padding: 4px 8px; border-radius: 4px; font-size: 12px;">30 Sec Hold</span>
+            </div>
+
+            <!-- Seated Breathing Pose -->
+            <div style="background: #1e293b; padding: 15px; border-radius: 12px; border: 1px solid #334155;">
+                <img src="https://images.unsplash.com/photo-1510894347252-971091216a69?w=400" alt="Breathing Exercise" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
+                <h3 style="color: #38bdf8; margin-top: 10px;">Seated Sukhasana (Breathing)</h3>
+                <p style="font-size: 13px; color: #94a3b8;">Relaxing breathing exercise. 100% Wheelchair friendly.</p>
+                <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 4px 8px; border-radius: 4px; font-size: 12px;">5 Mins Daily</span>
+            </div>
+
+        </div>
+        <div class="nav-btns">
+            <a href="/dashboard" class="btn btn-back">← Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

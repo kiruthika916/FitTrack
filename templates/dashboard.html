@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FitTrack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111827, #1e3a5f);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        h2 span {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        p {
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: #7dd3fc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 25px;
+            background: #ef4444;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-card">
+        <div class="welcome-icon">🎉</div>
+        <div class="status-badge">✓ Login Successful</div>    
+        <h2>Welcome, <span>{{ user_name }}</span>!</h2>
+        <p>You have successfully logged in to your <strong>FitTrack</strong> dashboard. Your fitness journey starts here!</p>
+        <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+
+    <!-- Card 1: Workout Plans -->
+    <a href="/workouts" style="text-decoration: none; color: inherit; display: block;">
+        <div class="dashboard-card" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 30px; margin-bottom: 10px;">🏋️‍♂️</div>
+            <h3>Workout Plans</h3>
+            <p style="font-size: 14px; opacity: 0.8; margin-top: 8px;">Personalized workout plans for your fitness journey.</p>
+        </div>
+    </a>
+
+    <!-- Card 2: Track Progress -->
+    <a href="/progress" style="text-decoration: none; color: inherit; display: block;">
+        <div class="dashboard-card" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 30px; margin-bottom: 10px;">📊</div>
+            <h3>Track Progress</h3>
+            <p style="font-size: 14px; opacity: 0.8; margin-top: 8px;">Monitor your progress and stay motivated.</p>
+        </div>
+    </a>
+
+    <!-- Card 3: Voice Assistant -->
+    <a href="#" onclick="startVoiceAssistant(); return false;" style="text-decoration: none; color: inherit; display: block;">
+        <div class="dashboard-card" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 30px; margin-bottom: 10px;">🎤</div>
+            <h3>Voice Assistant</h3>
+            <p style="font-size: 14px; opacity: 0.8; margin-top: 8px;">Control your fitness experience using your voice.</p>
+        </div>
+    </a>
+
+</div>
+
+        <a href="/login" class="logout-btn">Logout</a>
+    </div>
+<script>
+    // Text-To-Speech function for visually impaired users
+    function speakResponse(text, callback) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Stop any previous speech
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.rate = 1;
+            speech.pitch = 1;
+            
+            // Microphone starts listening only after speech ends
+            speech.onend = function() {
+                if (callback) callback();
+            };
+
+            window.speechSynthesis.speak(speech);
+        } else if (callback) {
+            callback();
+        }
+    }
+
+    function startVoiceAssistant() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            alert("Voice Recognition is not supported in this browser. Please use Google Chrome.");
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        // 1. Voice prompt instructs the user first
+        speakResponse("Listening now. Please say Go to workouts, Track progress, or Logout.", function() {
+            try {
+                recognition.start();
+            } catch (e) {
+                console.log("Recognition already started: ", e);
+            }
+        });
+
+        // 2. Handles voice command after speech input
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript.toLowerCase();
+            console.log("You said: " + transcript);
+
+            if (transcript.includes("workout") || transcript.includes("workouts") || transcript.includes("plan") || transcript.includes("yoga")) {
+                speakResponse("Opening Workouts and Yoga Section");
+                setTimeout(() => {
+                    window.location.href = "/workouts";
+                }, 1200);
+            } 
+            else if (transcript.includes("progress") || transcript.includes("track") || transcript.includes("log")) {
+                speakResponse("Opening Progress Tracker");
+                setTimeout(() => {
+                    window.location.href = "/progress";
+                }, 1200);
+            }
+            else if (transcript.includes("logout") || transcript.includes("log out")) {
+                speakResponse("Logging out");
+                setTimeout(() => {
+                    window.location.href = "/login";
+                }, 1200);
+            }
+            else {
+                speakResponse("Command not recognized. You said " + transcript + ". Please try again.");
+            }
+        };
+
+        recognition.onerror = function(event) {
+            console.error("Speech recognition error:", event.error);
+            if (event.error === 'not-allowed') {
+                alert("Microphone permission denied. Please allow microphone access in your browser address bar.");
+            } else {
+                speakResponse("Could not hear you properly. Please click Voice Assistant and try again.");
+            }
+        };
+    }
+</script>
+</body>
+</html>
